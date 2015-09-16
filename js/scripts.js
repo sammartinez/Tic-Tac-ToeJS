@@ -54,3 +54,11 @@ Game.prototype.nextTurn = function() {
     this.turn = this.player1;
   }
 }
+
+Game.prototype.computerTurnRandom = function() {
+  var computerSpace = Math.floor(Math.random() * 9);
+  while(isNaN(this.board.boardArray[computerSpace].markedBy)) {
+    computerSpace = Math.floor(Math.random() * 9);
+  }
+  this.board.boardArray[computerSpace].mark(this.player2);
+}

@@ -166,4 +166,22 @@ describe('Game', function() {
     testGame.nextTurn();
     expect(testGame.turn).to.equal(testPlayer1);
   });
+
+  it("should mark the only open space on the computers turn", function() {
+    var testBoard = new Board(3);
+    var testPlayer = new Player("X");
+    var testPlayer2 = new Player("Y");
+    var testGame = new Game(testPlayer, testPlayer2, testBoard);
+
+    testBoard.boardArray[0].mark(testPlayer2);
+    testBoard.boardArray[1].mark(testPlayer2);
+    testBoard.boardArray[2].mark(testPlayer);
+    testBoard.boardArray[3].mark(testPlayer);
+    testBoard.boardArray[4].mark(testPlayer);
+    testBoard.boardArray[5].mark(testPlayer2);
+    testBoard.boardArray[7].mark(testPlayer);
+    testBoard.boardArray[8].mark(testPlayer);
+    testGame.computerTurnRandom();
+    expect(testGame.board.boardArray[6].markedBy).to.equal(testPlayer2);
+  });
 });
