@@ -12,13 +12,51 @@ Space.prototype.mark = function(player) {
   this.markedBy = player;
 }
 
-function Board() {
-  var board_array = [];
-  for(var x=1; x<4; x++) {
-    for(var y=1; y<4; y++) {
+function Board(size) {
+  this.boardArray = [];
+  for(var x=1; x<=size; x++) {
+    for(var y=1; y<=size; y++) {
       var newSpace = new Space(x,y,null);
-      board_array.push(newSpace);
+      this.boardArray.push(newSpace);
     }
   }
-  return board_array;
+}
+
+Board.prototype.getRows = function(xCoord) {
+  var rows = [];
+  this.boardArray.forEach(function(space) {
+    if(space.xCoordinate === xCoord) {
+      rows.push(space);
+    }
+  });
+  return rows;
+}
+//
+Board.prototype.checkGameOver = function() {
+  console.log(this.boardArray[0].markedBy);
+  for(var i=0; i<this.boardArray.length; i++) {
+    if((this.boardArray[i].markedBy === this.boardArray[i+1].markedBy) && (this.boardArray[i].markedBy === this.boardArray[i+2].markedBy)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  // this.boardArray.forEach(function(space, index) {
+  //   console.log(index);
+  //   if(this.markedBy === this.boardArray[index].markedBy) {
+  //     return true;
+  //   }
+    // var xCoordinate = space.xCoordinate;
+    // var yCoordinate = space.yCoordinate;
+    //
+    // for(var x = xCoordinate; x<=3; x++) {
+    //   for(var y = 1; y<=3; y++) {
+    //     var currentSpace;
+    //     currentSpace.find(x, y);
+    //   }
+    // }
+    // var rows = this.getRows(space.xCoordinate);
+    // if((rows[0].markedBy === rows[1].markedBy) && (rows[0].markedBy === rows[2].markedBy)) {
+    //   return true;
+    // }
 }
