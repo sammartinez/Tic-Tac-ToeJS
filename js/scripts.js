@@ -62,3 +62,21 @@ Game.prototype.computerTurnRandom = function() {
   }
   this.board.boardArray[computerSpace].mark(this.player2);
 }
+
+function newGame() {
+  var player1 = new Player("X");
+  var player2 = new Player("O");
+  var board = new Board(3);
+  var game = new Game(player1, player2, board);
+}
+
+$(document).ready(function() {
+  $("form#new-game").submit(function(event) {
+    newGame();
+
+    
+  });
+
+
+
+});
