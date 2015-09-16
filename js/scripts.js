@@ -33,6 +33,10 @@ Board.prototype.getRows = function(xCoord) {
 }
 //
 Board.prototype.checkGameOver = function() {
+  //Diagonals
+  if((this.boardArray[0].markedBy === this.boardArray[4].markedBy) && (this.boardArray[0].markedBy === this.boardArray[8].markedBy) || (this.boardArray[2].markedBy === this.boardArray[4].markedBy) && (this.boardArray[2].markedBy === this.boardArray[6].markedBy)) {
+    return true;
+  } else {
   //Rows
   for(var i=0; i<this.boardArray.length; i+=3) {
     if((this.boardArray[i].markedBy === this.boardArray[i+1].markedBy) && (this.boardArray[i].markedBy === this.boardArray[i+2].markedBy)) {
@@ -45,11 +49,11 @@ Board.prototype.checkGameOver = function() {
       return true;
     }
   }
-  //Diagonals
+  return false;
+}
 
-  if((this.boardArray[0].markedBy === this.boardArray[4].markedBy) && (this.boardArray[0].markedBy === this.boardArray[8].markedBy) || (this.boardArray[2].markedBy === this.boardArray[4].markedBy) && (this.boardArray[2].markedBy === this.boardArray[6].markedBy)) {
-    return true;
-  }
+
+
   // this.boardArray.forEach(function(space, index) {
   //   console.log(index);
   //   if(this.markedBy === this.boardArray[index].markedBy) {
