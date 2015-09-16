@@ -33,13 +33,22 @@ Board.prototype.getRows = function(xCoord) {
 }
 //
 Board.prototype.checkGameOver = function() {
-  console.log(this.boardArray[0].markedBy);
-  for(var i=0; i<this.boardArray.length; i++) {
+  //Rows
+  for(var i=0; i<this.boardArray.length; i+=3) {
     if((this.boardArray[i].markedBy === this.boardArray[i+1].markedBy) && (this.boardArray[i].markedBy === this.boardArray[i+2].markedBy)) {
       return true;
-    } else {
-      return false;
     }
+  }
+  //Columns
+  for(var i=0; i<this.boardArray.length; i++) {
+    if((this.boardArray[i].markedBy === this.boardArray[i+3].markedBy) && (this.boardArray[i].markedBy === this.boardArray[i+6].markedBy)) {
+      return true;
+    }
+  }
+  //Diagonals
+
+  if((this.boardArray[0].markedBy === this.boardArray[4].markedBy) && (this.boardArray[0].markedBy === this.boardArray[8].markedBy) || (this.boardArray[2].markedBy === this.boardArray[4].markedBy) && (this.boardArray[2].markedBy === this.boardArray[6].markedBy)) {
+    return true;
   }
   // this.boardArray.forEach(function(space, index) {
   //   console.log(index);

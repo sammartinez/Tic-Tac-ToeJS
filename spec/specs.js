@@ -35,7 +35,7 @@ describe('Board', function() {
     expect(testBoard.boardArray).to.eql([testSpace1, testSpace2, testSpace3, testSpace4, testSpace5, testSpace6, testSpace7, testSpace8, testSpace9]);
   });
 
-  it("tells if there are three in a row marked by the same player", function() {
+  it("tells if there are three in a row marked by the same player within a row with the array values at 0, 1, 2", function() {
     var testBoard = new Board(3);
     var testPlayer = new Player("X");
 
@@ -45,14 +45,86 @@ describe('Board', function() {
     expect(testBoard.checkGameOver()).to.equal(true);
   });
 
-  it("tells if there are three in a row marked by the same player", function() {
+  it("tells if there are three in a row marked by the same player within a row with the array values at 3, 4, 5", function() {
+    var testBoard = new Board(3);
+    var testPlayer = new Player("X");
+
+    testBoard.boardArray[3].mark(testPlayer);
+    testBoard.boardArray[4].mark(testPlayer);
+    testBoard.boardArray[5].mark(testPlayer);
+    expect(testBoard.checkGameOver()).to.equal(true);
+  });
+
+  it("tells if there are three in a row marked by the same player within a row with the array values at 6, 7, 8", function() {
+    var testBoard = new Board(3);
+    var testPlayer = new Player("X");
+
+    testBoard.boardArray[6].mark(testPlayer);
+    testBoard.boardArray[7].mark(testPlayer);
+    testBoard.boardArray[8].mark(testPlayer);
+    expect(testBoard.checkGameOver()).to.equal(true);
+  });
+
+  // it("tells if there are three in a row marked by the same player", function() {
+  //   var testBoard = new Board(3);
+  //   var testPlayer = new Player("X");
+  //   var testPlayer2 = new Player("Y");
+  //   testBoard.boardArray[0].mark(testPlayer);
+  //   testBoard.boardArray[1].mark(testPlayer);
+  //   testBoard.boardArray[2].mark(testPlayer2);
+  //   expect(testBoard.checkGameOver()).to.equal(false);
+  // });
+
+  it("tells if there are three in a row marked by the same player within a column with the array values at 0, 3, 6", function() {
     var testBoard = new Board(3);
     var testPlayer = new Player("X");
 
     testBoard.boardArray[0].mark(testPlayer);
-    testBoard.boardArray[1].mark(testPlayer);
-    expect(testBoard.checkGameOver()).to.equal(false);
+    testBoard.boardArray[3].mark(testPlayer);
+    testBoard.boardArray[6].mark(testPlayer);
+    expect(testBoard.checkGameOver()).to.equal(true);
   });
+
+  it("tells if there are three in a row marked by the same player within a column with the array values at 1, 4, 7", function() {
+    var testBoard = new Board(3);
+    var testPlayer = new Player("X");
+
+    testBoard.boardArray[1].mark(testPlayer);
+    testBoard.boardArray[4].mark(testPlayer);
+    testBoard.boardArray[7].mark(testPlayer);
+    expect(testBoard.checkGameOver()).to.equal(true);
+  });
+
+  it("tells if there are three in a row marked by the same player within a column with the array values at 2, 5, 8", function() {
+    var testBoard = new Board(3);
+    var testPlayer = new Player("X");
+
+    testBoard.boardArray[2].mark(testPlayer);
+    testBoard.boardArray[5].mark(testPlayer);
+    testBoard.boardArray[8].mark(testPlayer);
+    expect(testBoard.checkGameOver()).to.equal(true);
+  });
+
+  it("tells if there are three in a row marked by the same player within a diagonal with the array values at 0, 4, 8", function() {
+    var testBoard = new Board(3);
+    var testPlayer = new Player("X");
+
+    testBoard.boardArray[0].mark(testPlayer);
+    testBoard.boardArray[4].mark(testPlayer);
+    testBoard.boardArray[8].mark(testPlayer);
+    expect(testBoard.checkGameOver()).to.equal(true);
+  });
+
+  it("tells if there are three in a row marked by the same player within a diagonal with the array values at 2, 4, 6", function() {
+    var testBoard = new Board(3);
+    var testPlayer = new Player("X");
+
+    testBoard.boardArray[2].mark(testPlayer);
+    testBoard.boardArray[4].mark(testPlayer);
+    testBoard.boardArray[6].mark(testPlayer);
+    expect(testBoard.checkGameOver()).to.equal(true);
+  });
+
 
 });
 
