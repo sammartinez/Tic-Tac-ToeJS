@@ -2,9 +2,7 @@ function Player(mark) {
   this.mark = mark;
 }
 
-function Space(xCoordinate, yCoordinate, markedBy) {
-  this.xCoordinate = xCoordinate;
-  this.yCoordinate = yCoordinate;
+function Space(markedBy) {
   this.markedBy = markedBy;
 }
 
@@ -14,62 +12,45 @@ Space.prototype.mark = function(player) {
 
 function Board(size) {
   this.boardArray = [];
-  for(var x=1; x<=size; x++) {
-    for(var y=1; y<=size; y++) {
-      var newSpace = new Space(x,y,null);
+  for(var x=1; x<=(size*size); x++) {
+      var newSpace = new Space(x);
       this.boardArray.push(newSpace);
     }
-  }
 }
 
-Board.prototype.getRows = function(xCoord) {
-  var rows = [];
-  this.boardArray.forEach(function(space) {
-    if(space.xCoordinate === xCoord) {
-      rows.push(space);
-    }
-  });
-  return rows;
-}
-//
 Board.prototype.checkGameOver = function() {
-  //Diagonals
-  if((this.boardArray[0].markedBy === this.boardArray[4].markedBy) && (this.boardArray[0].markedBy === this.boardArray[8].markedBy) || (this.boardArray[2].markedBy === this.boardArray[4].markedBy) && (this.boardArray[2].markedBy === this.boardArray[6].markedBy)) {
-    return true;
-  } else {
-  //Rows
-  for(var i=0; i<this.boardArray.length; i+=3) {
-    if((this.boardArray[i].markedBy === this.boardArray[i+1].markedBy) && (this.boardArray[i].markedBy === this.boardArray[i+2].markedBy)) {
-      return true;
+    var gameOver=false;
+    //Diagonals
+    if((this.boardArray[0].markedBy === this.boardArray[4].markedBy) && (this.boardArray[0].markedBy === this.boardArray[8].markedBy) ||
+    (this.boardArray[2].markedBy === this.boardArray[4].markedBy) && (this.boardArray[2].markedBy === this.boardArray[6].markedBy)) {
+      gameOver = true;
     }
-  }
-  //Columns
-  for(var i=0; i<this.boardArray.length; i++) {
-    if((this.boardArray[i].markedBy === this.boardArray[i+3].markedBy) && (this.boardArray[i].markedBy === this.boardArray[i+6].markedBy)) {
-      return true;
+    //Rows
+    for(var i=0; i<this.boardArray.length; i+=3) {
+      if((this.boardArray[i].markedBy === this.boardArray[i+1].markedBy) && (this.boardArray[i].markedBy === this.boardArray[i+2].markedBy)) {
+        gameOver = true;
+      }
     }
-  }
-  return false;
+    // Columns
+    for(var j=0; j<3; j++) {
+      if((this.boardArray[j].markedBy === this.boardArray[j+3].markedBy) && (this.boardArray[j].markedBy === this.boardArray[j+6].markedBy)) {
+        gameOver = true;
+      }
+    }
+  return gameOver;
 }
 
+function Game(player1, player2, board) {
+  this.player1 = player1;
+  this.player2 = player2;
+  this.board = board;
+  this.turn = player1;
+}
 
-
-  // this.boardArray.forEach(function(space, index) {
-  //   console.log(index);
-  //   if(this.markedBy === this.boardArray[index].markedBy) {
-  //     return true;
-  //   }
-    // var xCoordinate = space.xCoordinate;
-    // var yCoordinate = space.yCoordinate;
-    //
-    // for(var x = xCoordinate; x<=3; x++) {
-    //   for(var y = 1; y<=3; y++) {
-    //     var currentSpace;
-    //     currentSpace.find(x, y);
-    //   }
-    // }
-    // var rows = this.getRows(space.xCoordinate);
-    // if((rows[0].markedBy === rows[1].markedBy) && (rows[0].markedBy === rows[2].markedBy)) {
-    //   return true;
-    // }
+Game.prototype.nextTurn = function() {
+  if(this.turn === this.player1) {
+    this.turn = this.player2;
+  } else {
+    this.turn = this.player1;
+  }
 }
