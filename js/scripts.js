@@ -53,6 +53,9 @@ Game.prototype.nextTurn = function() {
   } else {
     this.turn = this.player1;
   }
+  // Insert a header for which player's turn it is (if two player)
+  // $(".player_turn").empty();
+  // $(".player_turn").append("<h3>")
 }
 
 Game.prototype.computerTurnRandom = function() {
@@ -73,8 +76,7 @@ function newGame() {
 $(document).ready(function() {
   $("form#new-game").submit(function(event) {
     newGame();
-
-    
+    //create a grid with clickable squares
   });
 
 
