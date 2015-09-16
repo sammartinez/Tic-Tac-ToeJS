@@ -19,3 +19,19 @@ describe('Space', function() {
     expect(testSpace.markedBy).to.equal(testPlayer);
   });
 });
+
+describe('Board', function() {
+  it("creates 9 spaces when it is initialized", function() {
+    var testBoard = new Board();
+    var testSpace1 = new Space(1,1,null);
+    var testSpace2 = new Space(1,2,null);
+    var testSpace3 = new Space(1,3,null);
+    var testSpace4 = new Space(2,1,null);
+    var testSpace5 = new Space(2,2,null);
+    var testSpace6 = new Space(2,3,null);
+    var testSpace7 = new Space(3,1,null);
+    var testSpace8 = new Space(3,2,null);
+    var testSpace9 = new Space(3,3,null);
+    expect(testBoard).to.eql([testSpace1, testSpace2, testSpace3, testSpace4, testSpace5, testSpace6, testSpace7, testSpace8, testSpace9]);
+  });
+});
