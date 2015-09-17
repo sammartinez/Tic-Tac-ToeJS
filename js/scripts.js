@@ -147,71 +147,91 @@ $(document).ready(function() {
       board = new Board(3);
       game = new Game(player1, player2, board);
       turnCount = 0;
-
-
       $(".board").show();
       event.preventDefault();
-
-      function bagels(game, turnCount) {
-        turnCount++;
-        game.board.checkGameOver(game, turnCount);
-        game.nextTurn();
-      }
 
       //create a grid with clickable squares
       $(".two").one("click", function() {
         game.board.boardArray[2].mark(game.turn);
+        console.log(game.turn);
         $(".two").empty();
         $(".two").append("<img src=" + game.turn.markImage + ">");
-        bagels(game, turnCount);
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
       });
+
       $(".five").one("click", function() {
         game.board.boardArray[5].mark(game.turn);
         $(".five").empty();
         $(".five").append("<img src=" + game.turn.markImage + ">");
-        bagels(game, turnCount);
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
       });
+
       $(".eight").one("click", function() {
         game.board.boardArray[8].mark(game.turn);
         $(".eight").empty();
         $(".eight").append("<img src=" + game.turn.markImage + ">");
-        bagels(game, turnCount);
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
       });
+
       $(".one").one("click", function() {
         game.board.boardArray[1].mark(game.turn);
         $(".one").empty();
         $(".one").append("<img src=" + game.turn.markImage + ">");
-        bagels(game, turnCount);
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
       });
+
       $(".four").one("click", function() {
         game.board.boardArray[4].mark(game.turn);
         $(".four").empty();
         $(".four").append("<img src=" + game.turn.markImage + ">");
-        bagels(game, turnCount);
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
       });
+
       $(".seven").one("click", function() {
         game.board.boardArray[7].mark(game.turn);
         $(".seven").empty();
         $(".seven").append("<img src=" + game.turn.markImage + ">");
-        bagels(game, turnCount);
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
       });
+
       $(".zero").one("click", function() {
         game.board.boardArray[0].mark(game.turn);
         $(".zero").empty();
         $(".zero").append("<img src=" + game.turn.markImage + ">");
-        bagels(game, turnCount);
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
       });
+
       $(".three").one("click", function() {
         game.board.boardArray[3].mark(game.turn);
         $(".three").empty();
         $(".three").append("<img src=" + game.turn.markImage + ">");
-        bagels(game, turnCount);
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
       });
+
       $(".six").one("click", function() {
         game.board.boardArray[6].mark(game.turn);
         $(".six").empty();
         $(".six").append("<img src=" + game.turn.markImage + ">");
-        bagels(game, turnCount);
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
       });
+      
     });
 });
