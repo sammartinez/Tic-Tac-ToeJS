@@ -2,10 +2,18 @@
   text-align:center;
 }
 
+div {
+    box-sizing: border-box;
+    margin: 0;
+
+}
+
 .board {
   display:none;
     height: 450px;
     width: 450px;
+    margin: auto;
+    padding: 1.15em;
 }
 .row {
     width: 550px;
