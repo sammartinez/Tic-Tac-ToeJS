@@ -45,10 +45,18 @@ Board.prototype.checkGameOver = function(game) {
       } else {
         var winner = "Player 2";
       }
-      return alert("Game Over! " + winner + " won!!!");
-      // location.reload(true);
+      alert("Game Over! " + winner + " won!!!");
+      window.location.reload(true);
     }
-  // return gameOver;
+    //else {
+    //   for(var i=0; i<game.board.boardArray.length; i++) {
+    //     if(isInteger(game.board.boardArray[i])) {
+    //     } else {
+    //       alert("Cat's Game!!!");
+    //       window.location.reload(true);
+    //     }
+    //   }
+    // }
 }
 
 function Game(player1, player2, board) {
@@ -100,7 +108,7 @@ $(document).ready(function() {
 
     resetBoard();
 
-    player1 = new Player("X", "https://nbccollegefootballtalk.files.wordpress.com/2012/02/wazzu-logo.jpg");
+      player1 = new Player("X", "https://nbccollegefootballtalk.files.wordpress.com/2012/02/wazzu-logo.jpg");
     player2 = new Player("O", "http://s7d2.scene7.com/is/image/Fathead/lgo_ncaa_oregon_ducks?layer=comp&fit=constrain&hei=300&wid=300&fmt=png-alpha&qlt=95,0&op_sharpen=1&resMode=bicub&op_usm=0.0,0.0,0,0&iccEmbed=0");
     board = new Board(3);
     game = new Game(player1, player2, board);
