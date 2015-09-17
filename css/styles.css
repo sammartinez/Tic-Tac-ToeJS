@@ -1,16 +1,18 @@
 body {
   background-image: url(http://campusriot.com/wp-content/uploads/2013/09/Oregon-Ducks-Autzen-Stadium.jpg);
   background-size: cover;
+  font-family: bagels;
+  text-shadow: 3px 3px 15px #4A4849;
 }
 
 h1 {
-  font-family:FridayNightLights;
+  font-family:bagels;
   color: #fff;
   text-shadow: 1px 4px 15px black;
 }
 
 @font-face {
-  font-family:FridayNightLights;
+  font-family:bagels;
   src: url(RichardsonBrandAccelerator.otf);
 }
 
@@ -39,9 +41,11 @@ img {
     width: 450px;
     margin: auto;
     padding: 1.15em;
+  shadow: 3px 3px 4px black;
 }
 
 #team-select {
+  font-family: bagels;
   display: none;
 }
 

@@ -97,14 +97,15 @@ function resetBoard() {
 }
 
 var teamList = [];
-var ducks = new Team("Oregon Ducks", "http://content.sportslogos.net/logos/33/797/full/2567.png");
-var cougs = new Team("Washington State Cougars", "https://nbccollegefootballtalk.files.wordpress.com/2012/02/wazzu-logo.jpg");
-var bsu = new Team("Boise State Broncos", "https://s-media-cache-ak0.pinimg.com/236x/29/93/94/299394f60a76b75203b007f922fb0075.jpg");
-var asu = new Team("Arizona State Sun Devils", "http://i.ebayimg.com/00/s/NTc1WDU3NQ==/z/hiUAAOxyA4ZRMMXR/$T2eC16JHJF8E9nnC6VCqBRMM(RhYpw~~60_35.JPG");
+var ducks = new Team("Oregon Ducks", "http://www.prosportsblogging.com/psb/themes/psb/images/icons/ncaa-oregonstateducks.png");
+var cougs = new Team("Washington State Cougars", "https://upload.wikimedia.org/wikipedia/en/9/95/WashingtonStateCougars.png");
+var bsu = new Team("Boise State Broncos", "https://upload.wikimedia.org/wikipedia/commons/0/0f/Boise_State_Athletic_%22B%22.png");
+var asu = new Team("Arizona State Sun Devils", "https://upload.wikimedia.org/wikipedia/en/2/21/Arizona_State_Sun_Devils_trident_logo.png");
 var unc = new Team("North Carolina Tar Heels", "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/University_of_North_Carolina_Tarheels_Interlocking_NC_logo.svg/2000px-University_of_North_Carolina_Tarheels_Interlocking_NC_logo.svg.png");
-var nebraska = new Team("Nebraska Cornhuskers", "http://content.sportslogos.net/logos/33/766/full/tehw6xtk9sefdv578hfzgepb3.gif");
-var beavers = new Team("Oregon State Beavers", "http://cdn1.sbnation.com/imported_assets/1435619/2568.png");
-teamList.push(asu, bsu, cougs, ducks, nebraska, unc, beavers);
+var nebraska = new Team("Nebraska Cornhuskers", "http://www.huskerj.com/Logos/Mascots-Logos/BlockN_Huskers.gif");
+var beavers = new Team("Oregon State Beavers", "http://3.bp.blogspot.com/-_P4oyCkyQVc/VJXbUAQesVI/AAAAAAAAHps/71kgPmqHW1c/s1600/Logo%2BOregon_State_Beavers.png");
+var utah = new Team("Utah Utes", "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Utah_Utes_logo.svg/1054px-Utah_Utes_logo.svg.png");
+teamList.push(asu, bsu, cougs, ducks, nebraska, unc, beavers, utah);
 
 function listTeams() {
    teamList.sort(function(obj1, obj2) {
@@ -131,7 +132,7 @@ var game;
 var turnCount;
 
 $(document).ready(function() {
-  
+
     $("button").click(function(event) {
       resetBoard();
       $("button.new-game").hide();
