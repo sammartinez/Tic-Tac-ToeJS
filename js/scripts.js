@@ -103,7 +103,8 @@ var bsu = new Team("Boise State Broncos", "https://s-media-cache-ak0.pinimg.com/
 var asu = new Team("Arizona State Sun Devils", "http://i.ebayimg.com/00/s/NTc1WDU3NQ==/z/hiUAAOxyA4ZRMMXR/$T2eC16JHJF8E9nnC6VCqBRMM(RhYpw~~60_35.JPG");
 var unc = new Team("North Carolina Tar Heels", "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/University_of_North_Carolina_Tarheels_Interlocking_NC_logo.svg/2000px-University_of_North_Carolina_Tarheels_Interlocking_NC_logo.svg.png");
 var nebraska = new Team("Nebraska Cornhuskers", "http://content.sportslogos.net/logos/33/766/full/tehw6xtk9sefdv578hfzgepb3.gif");
-teamList.push(asu, bsu, cougs, ducks, nebraska, unc);
+var beavers = new Team("Oregon State Beavers", "http://cdn1.sbnation.com/imported_assets/1435619/2568.png");
+teamList.push(asu, bsu, cougs, ducks, nebraska, unc, beavers);
 
 function listTeams() {
    teamList.sort(function(obj1, obj2) {
@@ -145,84 +146,72 @@ $(document).ready(function() {
       player2 = new Player("O", $("#team-list2").val());
       board = new Board(3);
       game = new Game(player1, player2, board);
-      console.log(game.turn);
       turnCount = 0;
+
+
       $(".board").show();
       event.preventDefault();
+
+      function bagels(game, turnCount) {
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
+      }
 
       //create a grid with clickable squares
       $(".two").one("click", function() {
         game.board.boardArray[2].mark(game.turn);
-        console.log(game.turn);
         $(".two").empty();
         $(".two").append("<img src=" + game.turn.markImage + ">");
-        turnCount++;
-        game.board.checkGameOver(game, turnCount);
-        game.nextTurn();
+        bagels(game, turnCount);
       });
       $(".five").one("click", function() {
         game.board.boardArray[5].mark(game.turn);
         $(".five").empty();
         $(".five").append("<img src=" + game.turn.markImage + ">");
-        turnCount++;
-        game.board.checkGameOver(game, turnCount);
-        game.nextTurn();
+        bagels(game, turnCount);
       });
       $(".eight").one("click", function() {
         game.board.boardArray[8].mark(game.turn);
         $(".eight").empty();
         $(".eight").append("<img src=" + game.turn.markImage + ">");
-        turnCount++;
-        game.board.checkGameOver(game, turnCount);
-        game.nextTurn();
+        bagels(game, turnCount);
       });
       $(".one").one("click", function() {
         game.board.boardArray[1].mark(game.turn);
         $(".one").empty();
         $(".one").append("<img src=" + game.turn.markImage + ">");
-        turnCount++;
-        game.board.checkGameOver(game, turnCount);
-        game.nextTurn();
+        bagels(game, turnCount);
       });
       $(".four").one("click", function() {
         game.board.boardArray[4].mark(game.turn);
         $(".four").empty();
         $(".four").append("<img src=" + game.turn.markImage + ">");
-        turnCount++;
-        game.board.checkGameOver(game, turnCount);
-        game.nextTurn();
+        bagels(game, turnCount);
       });
       $(".seven").one("click", function() {
         game.board.boardArray[7].mark(game.turn);
         $(".seven").empty();
         $(".seven").append("<img src=" + game.turn.markImage + ">");
-        turnCount++;
-        game.board.checkGameOver(game, turnCount);
-        game.nextTurn();
+        bagels(game, turnCount);
       });
       $(".zero").one("click", function() {
         game.board.boardArray[0].mark(game.turn);
         $(".zero").empty();
         $(".zero").append("<img src=" + game.turn.markImage + ">");
-        turnCount++;
-        game.board.checkGameOver(game, turnCount);
-        game.nextTurn();
+        bagels(game, turnCount);
       });
       $(".three").one("click", function() {
         game.board.boardArray[3].mark(game.turn);
         $(".three").empty();
         $(".three").append("<img src=" + game.turn.markImage + ">");
-        turnCount++;
-        game.board.checkGameOver(game, turnCount);
-        game.nextTurn();
+        bagels(game, turnCount);
       });
       $(".six").one("click", function() {
         game.board.boardArray[6].mark(game.turn);
         $(".six").empty();
         $(".six").append("<img src=" + game.turn.markImage + ">");
-        turnCount++;
-        game.board.checkGameOver(game, turnCount);
-        game.nextTurn();
+        bagels(game, turnCount);
       });
     });
 });
