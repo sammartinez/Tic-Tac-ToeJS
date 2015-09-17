@@ -24,6 +24,11 @@ img {
     margin: auto;
     padding: 1.15em;
 }
+
+#team-select {
+  display: none;
+}
+
 .row {
     width: 550px;
     height: 150px;

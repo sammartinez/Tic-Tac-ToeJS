@@ -19,7 +19,7 @@ function Board(size) {
     }
 }
 
-Board.prototype.checkGameOver = function(game) {
+Board.prototype.checkGameOver = function(game, turnCount) {
     var gameOver=false;
     //Diagonals
     if((this.boardArray[0].markedBy === this.boardArray[4].markedBy) && (this.boardArray[0].markedBy === this.boardArray[8].markedBy) ||
@@ -47,16 +47,10 @@ Board.prototype.checkGameOver = function(game) {
       }
       alert("Game Over! " + winner + " won!!!");
       window.location.reload(true);
+    } else if(turnCount===9) {
+        alert("Cat's Game!!!");
+        window.location.reload(true);
     }
-    //else {
-    //   for(var i=0; i<game.board.boardArray.length; i++) {
-    //     if(isInteger(game.board.boardArray[i])) {
-    //     } else {
-    //       alert("Cat's Game!!!");
-    //       window.location.reload(true);
-    //     }
-    //   }
-    // }
 }
 
 function Game(player1, player2, board) {
@@ -85,99 +79,150 @@ Game.prototype.computerTurnRandom = function() {
   this.board.boardArray[computerSpace].mark(this.player2);
 }
 
-  function resetBoard() {
-    $(".zero").empty();
-    $(".one").empty();
-    $(".two").empty();
-    $(".three").empty();
-    $(".four").empty();
-    $(".five").empty();
-    $(".six").empty();
-    $(".seven").empty();
-    $(".eight").empty();
-  }
+function Team(teamName, logo) {
+  this.teamName = teamName;
+  this.logo = logo;
+}
+
+function resetBoard() {
+  $(".zero").empty();
+  $(".one").empty();
+  $(".two").empty();
+  $(".three").empty();
+  $(".four").empty();
+  $(".five").empty();
+  $(".six").empty();
+  $(".seven").empty();
+  $(".eight").empty();
+}
+
+var teamList = [];
+var ducks = new Team("Oregon Ducks", "http://content.sportslogos.net/logos/33/797/full/2567.png");
+var cougs = new Team("Washington State Cougars", "https://nbccollegefootballtalk.files.wordpress.com/2012/02/wazzu-logo.jpg");
+var bsu = new Team("Boise State Broncos", "https://s-media-cache-ak0.pinimg.com/236x/29/93/94/299394f60a76b75203b007f922fb0075.jpg");
+var asu = new Team("Arizona State Sun Devils", "http://i.ebayimg.com/00/s/NTc1WDU3NQ==/z/hiUAAOxyA4ZRMMXR/$T2eC16JHJF8E9nnC6VCqBRMM(RhYpw~~60_35.JPG");
+var unc = new Team("North Carolina Tar Heels", "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/University_of_North_Carolina_Tarheels_Interlocking_NC_logo.svg/2000px-University_of_North_Carolina_Tarheels_Interlocking_NC_logo.svg.png");
+var nebraska = new Team("Nebraska Cornhuskers", "http://content.sportslogos.net/logos/33/766/full/tehw6xtk9sefdv578hfzgepb3.gif");
+teamList.push(asu, bsu, cougs, ducks, nebraska, unc);
+
+function listTeams() {
+   teamList.sort(function(obj1, obj2) {
+     if(obj1.teamName > obj2.teamName) {
+       return 1;
+     }
+     if(obj1.teamName < obj2.teamName) {
+       return -1;
+     }
+     return 0;
+   });
+
+   teamList.forEach(function(team) {
+     $("#team-list1").append('<option value=' + team.logo + '>' + team.teamName + '</option>');
+     $("#team-list2").append('<option value=' + team.logo + '>' + team.teamName + '</option>');
+   });
+}
 
 //Preset Variables for the Game when the 'New Game' button is pressed
 var player1;
 var player2;
 var board;
 var game;
+var turnCount;
 
 $(document).ready(function() {
-  $("button").click(function(event) {
 
-    resetBoard();
+    $("button").click(function(event) {
+      resetBoard();
+      $("button.new-game").hide();
+      $("#team-select").show();
+      listTeams();
+    });
 
-      player1 = new Player("X", "https://nbccollegefootballtalk.files.wordpress.com/2012/02/wazzu-logo.jpg");
-    player2 = new Player("O", "http://s7d2.scene7.com/is/image/Fathead/lgo_ncaa_oregon_ducks?layer=comp&fit=constrain&hei=300&wid=300&fmt=png-alpha&qlt=95,0&op_sharpen=1&resMode=bicub&op_usm=0.0,0.0,0,0&iccEmbed=0");
-    board = new Board(3);
-    game = new Game(player1, player2, board);
-    $(".board").show();
-    event.preventDefault();
+    $("form#team-select").submit(function(event) {
 
-    //create a grid with clickable squares
-    $(".two").one("click", function() {
-      game.board.boardArray[2].mark(game.turn);
-      $(".two").empty();
-      $(".two").append("<img src=" + game.turn.markImage + ">");
-      game.board.checkGameOver(game);
-      game.nextTurn();
+      $("#team-select").hide();
+      player1 = new Player("X", $("#team-list1").val());
+      player2 = new Player("O", $("#team-list2").val());
+      board = new Board(3);
+      game = new Game(player1, player2, board);
+      console.log(game.turn);
+      turnCount = 0;
+      $(".board").show();
+      event.preventDefault();
+
+      //create a grid with clickable squares
+      $(".two").one("click", function() {
+        game.board.boardArray[2].mark(game.turn);
+        console.log(game.turn);
+        $(".two").empty();
+        $(".two").append("<img src=" + game.turn.markImage + ">");
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
+      });
+      $(".five").one("click", function() {
+        game.board.boardArray[5].mark(game.turn);
+        $(".five").empty();
+        $(".five").append("<img src=" + game.turn.markImage + ">");
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
+      });
+      $(".eight").one("click", function() {
+        game.board.boardArray[8].mark(game.turn);
+        $(".eight").empty();
+        $(".eight").append("<img src=" + game.turn.markImage + ">");
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
+      });
+      $(".one").one("click", function() {
+        game.board.boardArray[1].mark(game.turn);
+        $(".one").empty();
+        $(".one").append("<img src=" + game.turn.markImage + ">");
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
+      });
+      $(".four").one("click", function() {
+        game.board.boardArray[4].mark(game.turn);
+        $(".four").empty();
+        $(".four").append("<img src=" + game.turn.markImage + ">");
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
+      });
+      $(".seven").one("click", function() {
+        game.board.boardArray[7].mark(game.turn);
+        $(".seven").empty();
+        $(".seven").append("<img src=" + game.turn.markImage + ">");
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
+      });
+      $(".zero").one("click", function() {
+        game.board.boardArray[0].mark(game.turn);
+        $(".zero").empty();
+        $(".zero").append("<img src=" + game.turn.markImage + ">");
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
+      });
+      $(".three").one("click", function() {
+        game.board.boardArray[3].mark(game.turn);
+        $(".three").empty();
+        $(".three").append("<img src=" + game.turn.markImage + ">");
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
+      });
+      $(".six").one("click", function() {
+        game.board.boardArray[6].mark(game.turn);
+        $(".six").empty();
+        $(".six").append("<img src=" + game.turn.markImage + ">");
+        turnCount++;
+        game.board.checkGameOver(game, turnCount);
+        game.nextTurn();
+      });
     });
-    $(".five").one("click", function() {
-      game.board.boardArray[5].mark(game.turn);
-      $(".five").empty();
-      $(".five").append("<img src=" + game.turn.markImage + ">");
-      game.board.checkGameOver(game);
-      game.nextTurn();
-    });
-    $(".eight").one("click", function() {
-      game.board.boardArray[8].mark(game.turn);
-      $(".eight").empty();
-      $(".eight").append("<img src=" + game.turn.markImage + ">");
-      game.board.checkGameOver(game);
-      game.nextTurn();
-    });
-    $(".one").one("click", function() {
-      game.board.boardArray[1].mark(game.turn);
-      $(".one").empty();
-      $(".one").append("<img src=" + game.turn.markImage + ">");
-      game.board.checkGameOver(game);
-      game.nextTurn();
-    });
-    $(".four").one("click", function() {
-      game.board.boardArray[4].mark(game.turn);
-      $(".four").empty();
-      $(".four").append("<img src=" + game.turn.markImage + ">");
-      game.board.checkGameOver(game);
-      game.nextTurn();
-    });
-    $(".seven").one("click", function() {
-      game.board.boardArray[7].mark(game.turn);
-      $(".seven").empty();
-      $(".seven").append("<img src=" + game.turn.markImage + ">");
-      game.board.checkGameOver(game);
-      game.nextTurn();
-    });
-    $(".zero").one("click", function() {
-      game.board.boardArray[0].mark(game.turn);
-      $(".zero").empty();
-      $(".zero").append("<img src=" + game.turn.markImage + ">");
-      game.board.checkGameOver(game);
-      game.nextTurn();
-    });
-    $(".three").one("click", function() {
-      game.board.boardArray[3].mark(game.turn);
-      $(".three").empty();
-      $(".three").append("<img src=" + game.turn.markImage + ">");
-      game.board.checkGameOver(game);
-      game.nextTurn();
-    });
-    $(".six").one("click", function() {
-      game.board.boardArray[6].mark(game.turn);
-      $(".six").empty();
-      $(".six").append("<img src=" + game.turn.markImage + ">");
-      game.board.checkGameOver(game);
-      game.nextTurn();
-    });
-  });
 });

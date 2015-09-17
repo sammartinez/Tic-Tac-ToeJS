@@ -11,16 +11,19 @@
       <h1>Tic Tac Toe!!!</h1>
         <button class="new-game">New Game</button>
 
-      <div class="board">
       <div class="player-turn">
       </div>
-      <h3>Choose your teams</h3>
-      <div class="player-1">
-        <h4>Player 1: <select> </select></h4>
-      </div>
-      <div class="player-2">
-        <h4>Player 2: <select> </select></h4>
-      </div>
+      <form id="team-select">
+        <h3>Choose your teams</h3>
+        <div class="player-1">
+          <h4>Player 1: <select id="team-list1"></select></h4>
+        </div>
+        <div class="player-2">
+          <h4>Player 2: <select id="team-list2"></select></h4>
+        </div>
+        <button type="submit" class="btn btn-default">Play!</button>
+      </form>
+      <div class="board">
         <div class="row">
           <div class="col-xs-1 two space">
           </div>
