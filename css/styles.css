@@ -1,0 +1,38 @@
+.container {
+  text-align:center;
+}
+
+.board {
+  display:none;
+    height: 450px;
+    width: 450px;
+}
+.row {
+    width: 550px;
+    height: 150px;
+    display: flex;
+}
+
+.space {
+    width: 150px;
+    height: 150px;
+    border: black solid 2px;
+    display: inline-block;
+
+}
+
+.zero, .one, .two {
+  border-left: none;
+}
+
+.two, .five, .eight {
+  border-top: none;
+}
+
+.eight, .seven, .six {
+  border-right: none;
+}
+
+.six, .three, .zero {
+  border-bottom: none;
+}

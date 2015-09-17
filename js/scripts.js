@@ -71,6 +71,8 @@ function newGame() {
   var player2 = new Player("O");
   var board = new Board(3);
   var game = new Game(player1, player2, board);
+  $(".board").show();
+  event.preventDefault();
 }
 
 $(document).ready(function() {
@@ -78,7 +80,4 @@ $(document).ready(function() {
     newGame();
     //create a grid with clickable squares
   });
-
-
-
 });
