@@ -66,9 +66,6 @@ Game.prototype.nextTurn = function() {
   } else {
     this.turn = this.player1;
   }
-  // Insert a header for which player's turn it is (if two player)
-  // $(".player_turn").empty();
-  // $(".player_turn").append("<h3>")
 }
 
 Game.prototype.computerTurnRandom = function() {
@@ -84,6 +81,7 @@ function Team(teamName, logo) {
   this.logo = logo;
 }
 
+//Resets the values within the grid(board)
 function resetBoard() {
   $(".zero").empty();
   $(".one").empty();
@@ -96,6 +94,8 @@ function resetBoard() {
   $(".eight").empty();
 }
 
+//Here are the teams that you can select from within the application
+
 var teamList = [];
 var ducks = new Team("Oregon Ducks", "http://www.prosportsblogging.com/psb/themes/psb/images/icons/ncaa-oregonstateducks.png");
 var cougs = new Team("Washington State Cougars", "https://upload.wikimedia.org/wikipedia/en/9/95/WashingtonStateCougars.png");
@@ -107,6 +107,7 @@ var beavers = new Team("Oregon State Beavers", "http://3.bp.blogspot.com/-_P4oyC
 var utah = new Team("Utah Utes", "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Utah_Utes_logo.svg/1054px-Utah_Utes_logo.svg.png");
 teamList.push(asu, bsu, cougs, ducks, nebraska, unc, beavers, utah);
 
+//Sort and list teams for a selection
 function listTeams() {
    teamList.sort(function(obj1, obj2) {
      if(obj1.teamName > obj2.teamName) {
@@ -133,6 +134,7 @@ var turnCount;
 
 $(document).ready(function() {
 
+    //Resets the board and allows user to select the button that starts a new game
     $("button").click(function(event) {
       resetBoard();
       $("button.new-game").hide();
@@ -140,6 +142,7 @@ $(document).ready(function() {
       listTeams();
     });
 
+    //Select teams and start a new game
     $("form#team-select").submit(function(event) {
 
       $("#team-select").hide();
@@ -151,7 +154,7 @@ $(document).ready(function() {
       $(".board").show();
       event.preventDefault();
 
-      //create a grid with clickable squares
+      //creates a grid with clickable squares
       $(".two").one("click", function() {
         game.board.boardArray[2].mark(game.turn);
         console.log(game.turn);
