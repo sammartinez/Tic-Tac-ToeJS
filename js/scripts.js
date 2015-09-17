@@ -1,5 +1,6 @@
-function Player(mark) {
+function Player(mark, markImage) {
   this.mark = mark;
+  this.markImage = markImage;
 }
 
 function Space(markedBy) {
@@ -66,18 +67,93 @@ Game.prototype.computerTurnRandom = function() {
   this.board.boardArray[computerSpace].mark(this.player2);
 }
 
-function newGame() {
-  var player1 = new Player("X");
-  var player2 = new Player("O");
-  var board = new Board(3);
-  var game = new Game(player1, player2, board);
-  $(".board").show();
-  event.preventDefault();
-}
+// function newGame() {
+//   var player1 = new Player("X", "http://fauwt.nl/wp-content/uploads/2014/11/xx.png");
+//   var player2 = new Player("O", "https://upload.wikimedia.org/wikipedia/commons/7/73/Deseret_small_long_O.svg");
+//   var board = new Board(3);
+//   var game = new Game(player1, player2, board);
+//   $(".board").show();
+//   event.preventDefault();
+// }
+
+  function resetBoard() {
+    $(".zero").empty();
+    $(".one").empty();
+    $(".two").empty();
+    $(".three").empty();
+    $(".four").empty();
+    $(".five").empty();
+    $(".six").empty();
+    $(".seven").empty();
+    $(".eight").empty();
+  }
 
 $(document).ready(function() {
-  $("form#new-game").submit(function(event) {
-    newGame();
+  $("button").click(function(event) {
+    resetBoard();
+
+    var player1 = new Player("X", "http://fauwt.nl/wp-content/uploads/2014/11/xx.png");
+    var player2 = new Player("O", "https://upload.wikimedia.org/wikipedia/commons/7/73/Deseret_small_long_O.svg");
+    var board = new Board(3);
+    var game = new Game(player1, player2, board);
+    $(".board").show();
+    event.preventDefault();
+    console.log(game);
+
     //create a grid with clickable squares
+    $(".two").one("click", function() {
+      game.board.boardArray[2].mark(game.turn);
+      $(".two").append("<img src=" + game.turn.markImage + ">");
+      game.board.checkGameOver();
+      game.nextTurn();
+    });
+    $(".five").one("click", function() {
+      game.board.boardArray[5].mark(game.turn);
+      $(".five").append("<img src=" + game.turn.markImage + ">");
+      game.board.checkGameOver();
+      game.nextTurn();
+    });
+    $(".eight").one("click", function() {
+      game.board.boardArray[8].mark(game.turn);
+      $(".eight").append("<img src=" + game.turn.markImage + ">");
+      game.board.checkGameOver();
+      game.nextTurn();
+    });
+    $(".one").one("click", function() {
+      game.board.boardArray[1].mark(game.turn);
+      $(".one").append("<img src=" + game.turn.markImage + ">");
+      game.board.checkGameOver();
+      game.nextTurn();
+    });
+    $(".four").one("click", function() {
+      game.board.boardArray[4].mark(game.turn);
+      $(".four").append("<img src=" + game.turn.markImage + ">");
+      game.board.checkGameOver();
+      game.nextTurn();
+    });
+    $(".seven").one("click", function() {
+      game.board.boardArray[7].mark(game.turn);
+      $(".seven").append("<img src=" + game.turn.markImage + ">");
+      game.board.checkGameOver();
+      game.nextTurn();
+    });
+    $(".zero").one("click", function() {
+      game.board.boardArray[0].mark(game.turn);
+      $(".zero").append("<img src=" + game.turn.markImage + ">");
+      game.board.checkGameOver();
+      game.nextTurn();
+    });
+    $(".three").one("click", function() {
+      game.board.boardArray[3].mark(game.turn);
+      $(".three").append("<img src=" + game.turn.markImage + ">");
+      game.board.checkGameOver();
+      game.nextTurn();
+    });
+    $(".six").one("click", function() {
+      game.board.boardArray[6].mark(game.turn);
+      $(".six").append("<img src=" + game.turn.markImage + ">");
+      game.board.checkGameOver();
+      game.nextTurn();
+    });
   });
 });
