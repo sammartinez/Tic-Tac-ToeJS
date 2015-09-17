@@ -131,7 +131,7 @@ var game;
 var turnCount;
 
 $(document).ready(function() {
-
+  
     $("button").click(function(event) {
       resetBoard();
       $("button.new-game").hide();
@@ -232,6 +232,6 @@ $(document).ready(function() {
         game.board.checkGameOver(game, turnCount);
         game.nextTurn();
       });
-      
+
     });
 });
